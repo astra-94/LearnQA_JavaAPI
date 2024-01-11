@@ -1,28 +1,4 @@
 # Default ignored files
 /shelf/
 /workspace.xml
-# Игнорирование файлов с расширением .log
-*.log
-
-# Игнорирование каталога target/
-target/
-
-
-
-# Игнорирование всех файлов в каталоге build/
-build/
-
-# Игнорирование файла secret.txt
-secret.txt
-
-# Игнорирование всех файлов в каталоге logs/ кроме файла important.log
-logs/*
-!logs/important.log
-codeStyleConfig.xml
-LEARN_QA.imi
-Main.java
-misc.xml
-modules.xml
-Project.xml
-vcs.xml
-
+/usage.statistics.xml
