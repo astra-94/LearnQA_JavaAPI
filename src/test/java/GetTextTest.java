@@ -1,4 +1,4 @@
-package src.tests.java;
+package src.test.java;
 
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
