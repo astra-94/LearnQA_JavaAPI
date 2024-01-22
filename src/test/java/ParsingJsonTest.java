@@ -1,29 +1,29 @@
 package src.test.java;
 
 import io.restassured.RestAssured;
+import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import org.junit.jupiter.api.Test;
+
+import java.util.List;
 
 public class ParsingJsonTest {
     @Test
     public void testParsingJson() {
-//        Map<String, String> data = new HashMap<>();
-//        data.put("login", "secret_login2");
-//        data.put("password", "secret_pass2");
 
-        Response responseForGet = RestAssured
+        Response responseWithMessages = RestAssured
                 .given()
-//                .body(data)
                 .when()
                 .get("https://playground.learnqa.ru/api/get_json_homework")
                 .andReturn();
 
-//        String responseCookie = responseForGet.getCookie("auth_cookie");
-//        Map<String, String> cookies = new HashMap<>();
-//        if (responseCookie != null)
-//        {cookies.put("auth_cookie", responseCookie);}
-        responseForGet.print();
+        JsonPath jsonPath = responseWithMessages.jsonPath();
+        List<String> messages = jsonPath.getList("messages.message");
+        //List<String> timestamps = jsonPath.getList("messages.timestamp");
 
+//I don't know if I need to compare timestamps to find what was in the middle,
+// or I can rely on sorting in json
+
+        System.out.println(messages.get(1));
     }
-
 }
