@@ -1,10 +1,14 @@
-package src.test.java;
+package homework;
 
 import io.restassured.RestAssured;
 import io.restassured.http.Headers;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -124,35 +128,70 @@ public class HelloWorldTest {
 //        System.out.println(responseCookie);
     //video 9 use cookie
 
-    @Test
-    public void testRestAssured()
+//    @Test
+//    public void testRestAssured()
+//    {
+//        Map<String, String> data = new HashMap<>();
+//        data.put("login", "super_admin");
+//        data.put("password", "welcome");
+//
+//        Response responseForGet = RestAssured
+//                .given()
+//                .body(data)
+//                .when()
+//                .post("https://playground.learnqa.ru/api/get_auth_cookie")
+//                .andReturn();
+//
+//        String responseCookie = responseForGet.getCookie("auth_cookie");
+//        Map<String, String> cookies = new HashMap<>();
+//        if (responseCookie != null)
+//        {
+//            cookies.put("auth_cookie", responseCookie);
+//        } else {
+//            System.out.println("Something went wrong");
+//        }
+//
+//
+//        Response responseForCheck = RestAssured
+//                .given()
+//                .body(data)
+//                .cookies(cookies)
+//                .when()
+//                .post("https://playground.learnqa.ru/api/check_auth_cookie")
+//                .andReturn();
+//
+//        responseForCheck.print();
+//
+//    }
+    //video 3.1
+//@Test
+//public void testPassed() {
+//
+//    Response response = RestAssured
+//            .get("https://playground.learnqa.ru/api/map")
+//            .andReturn();
+//    assertEquals(200, response.statusCode(), "Unexpected status code");
+//}
+
+    //video 3.2 на середине кончилось - досмотреть
+    @ParameterizedTest
+    @ValueSource(strings = {"", "John", "Pete"})
+    public void testHelloName(String name)
     {
-        Map<String, String> data = new HashMap<>();
-        data.put("login", "secret_login2");
-        data.put("password", "secret_pass2");
+        Map<String,String> queryParams = new HashMap<>();
 
-        Response responseForGet = RestAssured
+        if (name.length() > 0)
+        {
+            queryParams.put("name", name);
+        }
+
+        JsonPath response = RestAssured
                 .given()
-                .body(data)
-                .when()
-                .post("https://playground.learnqa.ru/api/get_auth_cookie")
-                .andReturn();
-
-        String responseCookie = responseForGet.getCookie("auth_cookie");
-        Map<String, String> cookies = new HashMap<>();
-        if (responseCookie != null)
-        {cookies.put("auth_cookie", responseCookie);}
-
-
-        Response responseForCheck = RestAssured
-                .given()
-                .body(data)
-                .cookies(cookies)
-                .when()
-                .post("https://playground.learnqa.ru/api/check_auth_cookie")
-                .andReturn();
-
-        responseForCheck.print();
-
+                .queryParams(queryParams)
+                .get("https://playground.learnqa.ru/api/hello")
+                .jsonPath();
+        String answer = response.getString("answer");
+        String expectedName = (name.length() > 0) ? name : "someone";
+        assertEquals("Hello, " + expectedName, answer, "The answer is not expected");
     }
 }

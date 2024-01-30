@@ -1,4 +1,4 @@
-package src.test.java;
+package homework;
 
 import org.junit.jupiter.api.Test;
 
