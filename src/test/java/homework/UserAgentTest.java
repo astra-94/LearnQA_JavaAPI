@@ -35,8 +35,8 @@ public class UserAgentTest {
         String currentBrowser = responseCheckUserAgent.getString("browser");
         String currentPlatform = responseCheckUserAgent.getString("platform");
 
-        assertEquals(expectedDevice, currentDevice, "Wrong device parameter. Now is " + currentDevice + ". Should be " + expectedDevice);
-        assertEquals(expectedBrowser, currentBrowser, "Wrong browser parameter. Now is " + currentBrowser + ". Should be " + expectedBrowser);
-        assertEquals(expectedPlatform, currentPlatform, "Wrong platform parameter. Now is " + currentPlatform + ". Should be " + expectedPlatform);
+        assertEquals(expectedDevice, currentDevice, "Problem with user agent " + userAgent +". Wrong device parameter. Now it is " + currentDevice + ". Should be " + expectedDevice);
+        assertEquals(expectedBrowser, currentBrowser, "Problem with user agent " + userAgent +". Wrong browser parameter. Now it is " + currentBrowser + ". Should be " + expectedBrowser);
+        assertEquals(expectedPlatform, currentPlatform, "Problem with user agent " + userAgent +". Wrong platform parameter. Now it is " + currentPlatform + ". Should be " + expectedPlatform);
     }
 }
