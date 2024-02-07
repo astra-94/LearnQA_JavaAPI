@@ -1,5 +1,7 @@
-
+package java.tests;
 import io.qameta.allure.Description;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
 import io.restassured.response.Response;
 import lib.DataGenerator;
 import org.junit.jupiter.api.DisplayName;
@@ -13,6 +15,8 @@ import src.test.java.lib.Assertions;
 import java.util.HashMap;
 import java.util.Map;
 
+@Epic("Registration cases")
+@Feature("Registration")
 public class UserRegisterTest extends BaseTestCase {
 
     private final ApiCoreRequests apiCoreRequests = new ApiCoreRequests();
@@ -44,7 +48,7 @@ public class UserRegisterTest extends BaseTestCase {
 
         Response responseCreateAuth = apiCoreRequests
                 .makePostRequestForRegistration("https://playground.learnqa.ru/api/user", userData);
-
+        System.out.println(responseCreateAuth.asString());
         Assertions.assertJsonHasField(responseCreateAuth, "id");
         Assertions.assertResponseCodeEquals(responseCreateAuth, 200);
     }

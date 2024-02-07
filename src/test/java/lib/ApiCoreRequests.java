@@ -20,6 +20,14 @@ public class ApiCoreRequests {
                 .andReturn();
     }
 
+    @Step("Make a GET-request without token and auth cookie")
+    public Response makeGetRequestWithoutCookieAndHeader(String url) {
+        return given()
+                .filter(new AllureRestAssured())
+                .get(url)
+                .andReturn();
+    }
+
     @Step("Make a GET-request with auth cookie only")
     public Response makeGetRequestWithCookie(String url, String cookie) {
         return given()
@@ -46,7 +54,7 @@ public class ApiCoreRequests {
                 .post(url)
                 .andReturn();
     }
-
+//TODO - возможно стоит соединить эти 2 метода makePostRequest и makePostRequestForRegistration
     @Step("Make a POST-request for registration")
     public Response makePostRequestForRegistration(String url, Map<String, String> userData) {
         return given()
@@ -55,4 +63,5 @@ public class ApiCoreRequests {
                 .post(url)
                 .andReturn();
     }
+
 }
