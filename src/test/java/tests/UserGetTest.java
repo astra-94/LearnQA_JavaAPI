@@ -1,14 +1,15 @@
+package tests;
 
 import io.qameta.allure.Description;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
 import io.restassured.response.Response;
+import lib.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import src.test.java.lib.BaseTestCase;
 import java.util.HashMap;
 import java.util.Map;
-import src.test.java.lib.Assertions;
 import lib.ApiCoreRequests;
 
 @Epic("Getting user's info cases")

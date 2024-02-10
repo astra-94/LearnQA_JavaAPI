@@ -1,8 +1,10 @@
-package java.tests;
+package tests;
+
 import io.qameta.allure.Description;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
 import io.restassured.response.Response;
+import lib.Assertions;
 import lib.DataGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -10,7 +12,6 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import src.test.java.lib.BaseTestCase;
 import lib.ApiCoreRequests;
-import src.test.java.lib.Assertions;
 
 import java.util.HashMap;
 import java.util.Map;
