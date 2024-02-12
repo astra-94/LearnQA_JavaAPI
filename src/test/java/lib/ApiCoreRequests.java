@@ -20,6 +20,15 @@ public class ApiCoreRequests {
                 .get(url)
                 .andReturn();
     }
+    @Step("Make a DELETE-request with token and auth cookie")
+    public Response makeDeleteRequest(String url, String token, String cookie) {
+        return given()
+                .filter(new AllureRestAssured())
+                .header(new Header("x-csrf-token", token))
+                .cookie("auth_sid", cookie)
+                .delete(url)
+                .andReturn();
+    }
     @Step("Make a PUT-request with token, auth cookie and body")
     public Response makePutRequest(String url, String token, String cookie, Map<String, String> editData) {
         return given()
@@ -75,12 +84,12 @@ public class ApiCoreRequests {
     }
 //TODO - возможно стоит соединить эти 2 метода makePostRequest и makePostRequestForRegistration
     @Step("Make a POST-request for registration")
-    public Response makePostRequestForRegistration(String url, Map<String, String> userData) {
+    public JsonPath makePostRequestForRegistration(String url, Map<String, String> userData) {
         return given()
                 .filter(new AllureRestAssured())
                 .body(userData)
                 .post(url)
-                .andReturn();
+                .jsonPath();
     }
 
     @Step("Make a POST-request and get json")
