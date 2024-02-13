@@ -1,8 +1,6 @@
 package tests;
 
-import io.qameta.allure.Description;
-import io.qameta.allure.Epic;
-import io.qameta.allure.Feature;
+import io.qameta.allure.*;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import lib.ApiCoreRequests;
@@ -10,6 +8,7 @@ import lib.Assertions;
 import lib.DataGenerator;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import src.test.java.lib.BaseTestCase;
 
@@ -37,6 +36,9 @@ public class UserEditTest extends BaseTestCase {
             userId = responseCreateAuth.getString("id");
     }
 
+    @Severity(SeverityLevel.CRITICAL)
+    @Owner("Makeeva")
+    @Tag("Regress")
     @Description("This test checks the positive case of the editing user's profile")
     @DisplayName("Test positive edition")
     @Test
@@ -75,6 +77,9 @@ public class UserEditTest extends BaseTestCase {
         Assertions.assertJsonByName(responseUserData, "firstName", newName);
     }
 
+    @Severity(SeverityLevel.NORMAL)
+    @Owner("Ivanov")
+    @Issue("jiraLink.com")
     @Description("This test checks the negative case of the editing user's profile without authorization")
     @DisplayName("Test negative edition: no auth")
     @Test
@@ -113,6 +118,8 @@ public class UserEditTest extends BaseTestCase {
         Assertions.assertJsonByNameNotEquals(responseUserData, "firstName", newName);
     }
 
+    @Severity(SeverityLevel.NORMAL)
+    @Owner("Makeeva")
     @Description("This test checks the negative case of the editing user's profile as another user")
     @DisplayName("Test negative edition: another user")
     @Test
@@ -161,6 +168,8 @@ public class UserEditTest extends BaseTestCase {
         Assertions.assertJsonByNameNotEquals(responseUserData, "firstName", newName);
     }
 
+    @Severity(SeverityLevel.MINOR)
+    @Owner("Ivanov")
     @Description("This test checks the negative case of the editing user's profile because of incorrect email")
     @DisplayName("Test negative edition: incorrect email")
     @Test
@@ -193,6 +202,9 @@ public class UserEditTest extends BaseTestCase {
         Assertions.assertResponseCodeEquals(responseEditUser, 400);
     }
 
+    @Severity(SeverityLevel.MINOR)
+    @Owner("Ivanov")
+    @Link("confluenceLink.com")
     @Description("This test checks the negative case of the editing user's profile because of short name")
     @DisplayName("Test negative edition: short name")
     @Test

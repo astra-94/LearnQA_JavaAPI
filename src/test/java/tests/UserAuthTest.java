@@ -1,13 +1,12 @@
 package tests;
 
-import io.qameta.allure.Description;
-import io.qameta.allure.Epic;
-import io.qameta.allure.Feature;
+import io.qameta.allure.*;
 import io.restassured.response.Response;
 import lib.ApiCoreRequests;
 import lib.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -40,6 +39,9 @@ public class UserAuthTest extends BaseTestCase {
             this.userIdOnAuth = this.getIntFromJson(responseGetAuth, "user_id");
         }
 
+        @Tag("Regress")
+        @Severity(SeverityLevel.BLOCKER)
+        @Owner("Makeeva")
         @Test
         @Description("This test successfully authorize user by email and password")
         @DisplayName("Test positive auth user")
@@ -56,6 +58,9 @@ public class UserAuthTest extends BaseTestCase {
             Assertions.assertJsonByName(responseCheckAuth, "user_id", this.userIdOnAuth);
         }
 
+        @Issue("jiraLink.com")
+        @Severity(SeverityLevel.NORMAL)
+        @Owner("Ivanov")
         @Description("This test checks authorization without sending header or cookie")
         @DisplayName("Test negative auth user")
         @ParameterizedTest

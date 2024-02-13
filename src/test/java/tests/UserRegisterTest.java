@@ -1,12 +1,11 @@
 package tests;
 
-import io.qameta.allure.Description;
-import io.qameta.allure.Epic;
-import io.qameta.allure.Feature;
+import io.qameta.allure.*;
 import io.restassured.response.Response;
 import lib.Assertions;
 import lib.DataGenerator;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -21,7 +20,9 @@ import java.util.Map;
 public class UserRegisterTest extends BaseTestCase {
 
     private final ApiCoreRequests apiCoreRequests = new ApiCoreRequests();
-
+    @Issue("jiralink.com")
+    @Severity(SeverityLevel.NORMAL)
+    @Owner("Ivanov")
     @Description("This test checks the registration with already used email")
     @DisplayName("Test negative registration: existing email")
     @Test
@@ -40,6 +41,9 @@ public class UserRegisterTest extends BaseTestCase {
         Assertions.assertResponseCodeEquals(responseCreateAuth, 400);
     }
 
+    @Severity(SeverityLevel.BLOCKER)
+    @Owner("Makeeva")
+    @Tag("Regress")
     @Description("This test checks the positive case of the registration")
     @DisplayName("Test positive registration")
     @Test
@@ -55,6 +59,8 @@ public class UserRegisterTest extends BaseTestCase {
         Assertions.assertResponseCodeEquals(responseCreateAuth, 200);
     }
 
+    @Severity(SeverityLevel.MINOR)
+    @Owner("Ivanov")
     @Description("This test checks the registration with an incorrect email")
     @DisplayName("Test negative registration: incorrect email")
     @Test
@@ -69,6 +75,9 @@ public class UserRegisterTest extends BaseTestCase {
         Assertions.assertResponseCodeEquals(responseCreateAuth, 400);
     }
 
+    @Severity(SeverityLevel.MINOR)
+    @Owner("Ivanov")
+    @Link("ConfluenceLink.com")
     @Description("This test checks the registration with a short name")
     @DisplayName("Test negative registration: short name")
     @Test
@@ -83,6 +92,9 @@ public class UserRegisterTest extends BaseTestCase {
         Assertions.assertResponseCodeEquals(responseCreateAuth, 400);
     }
 
+    @Severity(SeverityLevel.MINOR)
+    @Owner("Ivanov")
+    @Link("ConfluenceLink.com")
     @Description("This test checks the registration with a long name")
     @DisplayName("Test positive registration: long name")
     @Test
@@ -97,6 +109,10 @@ public class UserRegisterTest extends BaseTestCase {
         Assertions.assertJsonHasField(responseCreateAuth, "id");
     }
 
+    @Severity(SeverityLevel.MINOR)
+    @Owner("Ivanov")
+    @Link("ConfluenceLink.com")
+    @Tag("Regress")
     @Description("This test checks the registration with 1 empty parameter(5 cases)")
     @DisplayName("Test negative registration: empty parameter")
     @ParameterizedTest

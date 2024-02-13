@@ -1,13 +1,13 @@
 package tests;
 
-import io.qameta.allure.Description;
-import io.qameta.allure.Epic;
-import io.qameta.allure.Feature;
+import io.qameta.allure.*;
+import io.qameta.allure.Severity;
 import io.restassured.response.Response;
 import lib.ApiCoreRequests;
 import lib.Assertions;
 import lib.DataGenerator;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
@@ -19,6 +19,10 @@ import src.test.java.lib.BaseTestCase;
 public class UserDeleteTest extends BaseTestCase {
     private static final ApiCoreRequests apiCoreRequests = new ApiCoreRequests();
 
+    @Issue("jiraLink.com")
+    @Severity(SeverityLevel.NORMAL)
+    @Owner("Makeeva")
+    @Link("confluenceLink.com")
     @Description("This test checks the negative case of the deletion protected users(number 2)")
     @DisplayName("Test negative deletion: second user")
     @Test
@@ -41,6 +45,9 @@ public class UserDeleteTest extends BaseTestCase {
         Assertions.assertResponseTextEquals(responseDeleteUser, "Please, do not delete test users with ID 1, 2, 3, 4 or 5.");
     }
 
+    @Severity(SeverityLevel.CRITICAL)
+    @Owner("Makeeva")
+    @Tag("Regress")
     @Description("This test checks the positive case of the deletion user")
     @DisplayName("Test positive deletion")
     @Test
@@ -76,6 +83,9 @@ public class UserDeleteTest extends BaseTestCase {
         Assertions.assertResponseTextEquals(responseUserData, "User not found");
     }
 
+    @Severity(SeverityLevel.NORMAL)
+    @Owner("Makeeva")
+    @Link("confluenceLink.com")
     @Description("This test checks the negative case of the deletion another user")
     @DisplayName("Test negative deletion: another user")
     @Test

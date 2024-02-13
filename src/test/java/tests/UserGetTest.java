@@ -1,11 +1,10 @@
 package tests;
 
-import io.qameta.allure.Description;
-import io.qameta.allure.Epic;
-import io.qameta.allure.Feature;
+import io.qameta.allure.*;
 import io.restassured.response.Response;
 import lib.Assertions;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import src.test.java.lib.BaseTestCase;
 import java.util.HashMap;
@@ -17,6 +16,10 @@ import lib.ApiCoreRequests;
 public class UserGetTest extends BaseTestCase {
     private final ApiCoreRequests apiCoreRequests = new ApiCoreRequests();
 
+    @Severity(SeverityLevel.CRITICAL)
+    @Owner("Makeeva")
+    @Issue("jiraLink.com")
+    @Tag("Regress")
     @Description("This test checks the getting user's info without login")
     @DisplayName("Test of getting info without login")
     @Test
@@ -31,6 +34,10 @@ public class UserGetTest extends BaseTestCase {
         Assertions.assertJsonHasField(responseUserData, "username");
     }
 
+    @Severity(SeverityLevel.CRITICAL)
+    @Owner("Makeeva")
+    @Issue("jiraLink.com")
+    @Tag("Regress")
     @Description("This test checks the getting user's info with login as the same user")
     @DisplayName("Test of getting info with login(same user)")
     @Test
@@ -54,6 +61,9 @@ public class UserGetTest extends BaseTestCase {
 
     }
 
+    @Severity(SeverityLevel.NORMAL)
+    @Owner("Ivanov")
+    @Link("confluenceLink.com")
     @Description("This test checks the getting user's info with login as the another user")
     @DisplayName("Test of getting info with login(another user)")
     @Test
